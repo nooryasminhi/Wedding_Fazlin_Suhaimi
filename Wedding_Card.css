@@ -1,0 +1,362 @@
+@media (max-width: 768px) {
+    .display-3 {
+        font-size: 2.5rem; /* Keeps the names big and readable */
+    }
+    .main-title {
+        font-size: 1rem;
+        letter-spacing: 2px;
+    }
+    .btn-rsvp {
+        width: 100%; /* Full-width buttons are easier to click on mobile */
+        padding: 15px;
+    }
+}
+
+body { 
+    font-family: 'Playfair Display', !important; 
+}
+
+h1, h2 { 
+    font-family: 'Pinyon Script', cursive !important;
+}
+
+h5, h4, p {
+    font-family: 'Playfair Display', serif !important;
+}
+
+.bg-custom-grey-gradient {
+    background-color: #535353;
+}
+
+.bg-custom-grey-light {
+    background-color: #B8B8B8;
+}
+
+/* 1. The hidden state */
+.main-title {
+    opacity: 0;
+    transform: translateY(10px); /* Slight lift */
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+}
+
+/* 2. The visible state (triggered by JS) */
+.fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.writing-animation {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  
+  /* FIX 1: Hard Reset everything to 0 to kill the 'F' tail */
+  width: 0;
+  padding-left: 0;
+  padding-right: 0;
+  
+  /* FIX 2: Headroom for the 'i' dot */
+  padding-top: 20px; 
+  padding-bottom: 10px;
+  line-height: 1.6;
+}
+
+.start-writing {
+  /* FIX 3: Add padding back ONLY when writing starts */
+  padding-right: 30px; 
+  animation: typeCursive 3s steps(40, end) forwards;
+}
+
+@keyframes typeCursive {
+  from { 
+    width: 0; 
+  }
+  to { 
+    /* FIX 4: Use fit-content or a large % to ensure Fazlin & Suhaimi fits */
+    width: 100%; 
+  }
+}
+
+/* Envelope Section */
+
+.envelope-wrapper {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    /* Use a background image for that forest/vintage look */
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('background.jpg') center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 1.1s ease-out;    
+}
+
+.envelope {
+    position: relative;
+    width: 320px;
+    height: 220px;
+    perspective: 1000px; /* Gives a 3D feel to the flap */
+    transform: scale(1.1);
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+}
+
+.envelope-back {
+    position: absolute;
+    width: 100%; height: 100%;
+    background-color: #ebe7d5; /* Slightly darker inside */
+    z-index: 1; 
+}
+
+/* The Lacy Card */
+.lace-card {
+    position: absolute;
+    width: 290px;
+    height: auto;
+    left: 15px;
+    top: 15px;
+    z-index: 2;
+    transition: transform 1s ease 0.8s;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+.custom-invitation {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1)); /* Adds a subtle shadow for depth */
+}
+
+.flap {
+    position: absolute;
+    top: 0; left: 0;
+    width: 0; height: 0;
+    border-left: 160px solid transparent;
+    border-right: 160px solid transparent;
+    border-top: 120px solid #f2efde;
+    z-index: 4; /* Above the card and body */
+    transform-origin: top;
+    transition: transform 0.6s ease;
+}
+
+.envelope-body {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    /* This creates the V-shape pocket look */
+    background: #fdfbf1;
+    clip-path: polygon(0 0, 0% 100%, 100% 100%, 100% 0, 50% 50%);
+    z-index: 3; /* ABOVE the card, hiding it */
+}
+
+
+/* Animation: When opened */
+.envelope.open .flap {
+    transform: rotateX(180deg);
+    z-index: 1; /* Move flap behind everything after it opens so it doesn't block the card */
+}
+
+.envelope.open .lace-card {
+    transform: translateY(-150px); /* Slides the card UP */
+}
+
+/* Dress code section */
+.swatch {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Tentative Section */
+
+.tentative-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    gap: 40px;
+}
+
+/* Container sizing */
+.timeline-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+/* Central Vertical Line */
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #ffffff; 
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+/* General Event Styling */
+.timeline-event {
+    position: relative;
+    width: 50%; /* Takes up half the container */
+    padding: 20px 40px;
+    z-index: 2;
+}
+
+/* LEFT SIDE (Odd: 1, 3, 5) */
+.timeline-event:nth-child(odd) {
+    left: 0;
+    text-align: right;
+}
+
+/* RIGHT SIDE (Even: 2, 4, 6) */
+.timeline-event:nth-child(even) {
+    left: 50%;
+    text-align: left;
+}
+
+/* The Icons */
+.timeline-icon {
+    position: absolute;
+    top: 25px;
+    width: 36px;
+    height: 36px;
+    background: white;
+    border: 2px solid #B8B8B8;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #535353;
+    z-index: 10;
+}
+
+/* Icon placement adjustments */
+.timeline-event:nth-child(odd) .timeline-icon {
+    right: -18px; /* Half of icon width */
+}
+
+.timeline-event:nth-child(even) .timeline-icon {
+    left: -18px; /* Half of icon width */
+}
+
+/* This centers the timeline and places galleries on the wings */
+.tentative-layout-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 50px; /* Space between timeline and photos */
+    position: relative;
+}
+
+/* Fixed width for timeline keeps the center line stable */
+.timeline-container {
+    width: 400px; /* Adjust this to fit your cards */
+    position: relative;
+    flex-shrink: 0;
+}
+
+.arch-container {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.arch-frame {
+    /* Adjust these to match the size in your screenshot */
+    width: 280px; 
+    height: 400px;
+    
+    /* The Magic: Top-Left, Top-Right, Bottom-Right, Bottom-Left */
+    border-radius: 150px 150px 0 0; 
+    
+    overflow: hidden; /* This crops the image into the arch shape */
+    border: 8px solid #ffffff; /* Thick white border like the Canva design */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Soft elegant shadow */
+    background-color: #f9f9f9; /* Placeholder color while image loads */
+}
+
+.arch-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the photo fills the arch without stretching */
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+
+
+/* Contact Section */
+.contact-card {
+    transition: transform 0.3s ease;
+    border: 1px solid #eee;
+}
+
+.contact-card:hover {
+    transform: translateY(-10px);
+}
+
+.btn-whatsapp {
+    background-color: #25D366;
+    color: white;
+    font-weight: bold;
+    border-radius: 50px;
+}
+
+.btn-whatsapp:hover {
+    background-color: #128C7E;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.btn-wedding {
+    background-color: #535353; /* Using your charcoal hex */
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 50px;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden; /* Necessary for the shimmer */
+    transition: all 0.3s ease;
+}
+
+/* 1. The Shimmer Effect */
+.btn-wedding::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(30deg);
+    transition: none;
+}
+
+.btn-wedding:hover::after {
+    left: 120%;
+    transition: all 0.7s ease-in-out;
+}
+
+/* 2. The Hover Glow */
+.btn-wedding:hover {
+    background-color: #333;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+}
+
+/* 3. The Click (Active) Animation */
+.btn-wedding:active {
+    transform: scale(0.95); /* Elegant "press" feel */
+    background-color: #000;
+}
