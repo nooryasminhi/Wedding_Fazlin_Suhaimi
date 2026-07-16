@@ -1,0 +1,345 @@
+/* ========================================= */
+/* 1. GENERAL TYPOGRAPHY & BODY              */
+/* ========================================= */
+body { 
+    font-family: 'Playfair Display', serif !important; 
+}
+body.locked {
+    overflow: hidden; 
+}
+h1, h2 { 
+    font-family: 'Pinyon Script', cursive !important;
+}
+h5, h4, p {
+    font-family: 'Playfair Display', serif !important;
+}
+.bg-custom-grey-gradient {
+    background-color: #181A18;
+}
+
+/* ========================================= */
+/* 2. SPLASH COVER (Tap to Open Intro)       */
+/* ========================================= */
+.invite-cover {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100vh;
+    z-index: 9999;
+    /* Flex handles centering perfectly */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    cursor: pointer;
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+.cover-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* New Wrapper to group Photo + Text */
+.splash-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.photo-wrapper {
+    position: relative;
+    width: 85%;
+    max-width: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main-photo {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block; 
+}
+.names-overlay {
+    position: absolute;
+    z-index: 3;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+}
+.tap-hint {
+    margin-top: 25px; /* Spaces perfectly below the image */
+    color: #000000; /* Black Font */
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 3px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    animation: pulseHint 2s infinite;
+}
+@keyframes pulseHint {
+    0%, 100% { opacity: 0.4; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(-5px); }
+}
+.fade-out {
+    opacity: 0;
+    transform: scale(1.05);
+    pointer-events: none;
+}
+
+/* Smooth Cursive Animation */
+.big-names {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 16vw; 
+    line-height: 1.1; 
+    color: #000000;  /* Black Font */
+    text-shadow: 0 0 15px rgba(255,255,255,0.9); /* Adds a soft white glow behind black text */
+    margin: 0;
+}
+.smooth-cursive-reveal {
+    display: inline-block;
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    animation: smoothWrite 1.2s cubic-bezier(0.42, 0, 0.58, 1) forwards;
+}
+.name-1 { animation-delay: 0.5s; }
+.ampersand { animation-delay: 1.5s; font-size: 0.5em; vertical-align: middle; }
+.name-2 { animation-delay: 2.2s; }
+@keyframes smoothWrite {
+    to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+}
+
+/* ========================================= */
+/* 3. HERO SECTION                           */
+/* ========================================= */
+.hero-section {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('shade1.JPG') center center / cover no-repeat;
+    min-height: 100vh;
+    width: 100%;
+}
+.top-subtitle {
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+}
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 60vh !important; 
+        background-position: center top; 
+        padding-top: 80px; 
+    }
+    .top-subtitle { font-size: 0.9rem; }
+}
+
+/* ========================================= */
+/* 4. BISMILLAH SECTION                      */
+/* ========================================= */
+.bismillah-img {
+    max-width: 100%;
+    width: 500px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* ========================================= */
+/* 5. INTERACTIVE ENVELOPE (Scroll Toggle)   */
+/* ========================================= */
+.interactive-envelope {
+    position: relative;
+    max-width: 450px;
+    margin: 0 auto;
+}
+.env-img {
+    transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out; 
+    width: 100%;
+    display: block;
+}
+.env-hidden {
+    position: absolute;
+    top: 0; left: 0;
+    opacity: 0;
+}
+
+/* ========================================= */
+/* 6. TENTATIVE SECTION (TIMELINE)           */
+/* ========================================= */
+.tentative-layout-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 50px; 
+    position: relative;
+}
+.timeline-container {
+    width: 400px; 
+    position: relative;
+    flex-shrink: 0;
+    padding: 40px 0;
+}
+.timeline-line {
+    position: absolute;
+    left: 50%; top: 0; bottom: 0;
+    width: 2px;
+    background-color: #ffffff; 
+    transform: translateX(-50%);
+    z-index: 1;
+}
+.timeline-event {
+    position: relative;
+    width: 50%; 
+    padding: 20px 40px;
+    z-index: 2;
+}
+.timeline-event:nth-child(odd) {
+    left: 0; text-align: right;
+}
+.timeline-event:nth-child(even) {
+    left: 50%; text-align: left;
+}
+.timeline-icon {
+    position: absolute;
+    top: 25px;
+    width: 36px; height: 36px;
+    background: white;
+    border: 2px solid #B8B8B8;
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    color: #535353;
+    z-index: 10;
+}
+.timeline-event:nth-child(odd) .timeline-icon { right: -18px; }
+.timeline-event:nth-child(even) .timeline-icon { left: -18px; }
+
+/* Mobile Arches */
+.mobile-timeline-arch {
+    position: absolute;
+    width: 120px; height: 150px;
+    top: -15px; 
+    border-radius: 70px 70px 0 0;
+    border: 3px solid #fff;
+    overflow: hidden;
+    z-index: 1;
+}
+.mobile-timeline-arch img {
+    width: 100%; height: 100%; object-fit: cover;
+}
+.arch-left { left: -170px; }
+.arch-right { right: -170px; }
+@media (min-width: 992px) {
+    .mobile-timeline-arch { display: none !important; }
+}
+
+/* ========================================= */
+/* 7. CONTACT & RSVP BUTTONS                 */
+/* ========================================= */
+.contact-card {
+    transition: transform 0.3s ease;
+    border: 1px solid #eee;
+}
+.contact-card:hover { transform: translateY(-10px); }
+.btn-whatsapp {
+    background-color: #25D366;
+    color: white; font-weight: bold; border-radius: 50px;
+}
+.btn-whatsapp:hover {
+    background-color: #128C7E; color: white; box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.btn-wedding {
+    background-color: #535353; color: white; border: none;
+    padding: 12px; border-radius: 50px;
+    font-family: 'Playfair Display', serif; letter-spacing: 2px;
+    position: relative; overflow: hidden; transition: all 0.3s ease;
+}
+.btn-wedding::after {
+    content: ''; position: absolute;
+    top: -50%; left: -60%;
+    width: 20%; height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(30deg); transition: none;
+}
+.btn-wedding:hover::after {
+    left: 120%; transition: all 0.7s ease-in-out;
+}
+.btn-wedding:hover {
+    background-color: #333; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transform: translateY(-2px);
+}
+.btn-wedding:active {
+    transform: scale(0.95); background-color: #000;
+}
+/* ========================================= */
+/* 8. ELEGANT VINYL PLAYER                   */
+/* ========================================= */
+.vinyl-player-wrapper {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.vinyl-player-wrapper:hover {
+    transform: scale(1.05); /* Slight zoom when they hover over it */
+}
+
+/* The Record Body & Grooves */
+.vinyl-record {
+    width: 100%;
+    height: 100%;
+    background-color: #111; /* Darker than your background */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* This creates the illusion of vinyl grooves using layered shadows! */
+    box-shadow: 
+        inset 0 0 0 2px #333,
+        inset 0 0 0 10px #111,
+        inset 0 0 0 12px #444,
+        inset 0 0 0 25px #111,
+        inset 0 0 0 26px #222,
+        0 10px 20px rgba(0,0,0,0.5); 
+}
+
+/* The White Center Label */
+.vinyl-label {
+    width: 35%;
+    height: 35%;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #535353;
+}
+
+/* The Floating Icon (Bottom Right) */
+.player-controls {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    width: 35px;
+    height: 35px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #181A18;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    font-size: 1.2rem;
+}
+
+/* --- THE SPINNING ANIMATION --- */
+@keyframes spinRecord {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* This class gets added/removed by JavaScript */
+.playing {
+    animation: spinRecord 4s linear infinite;
+}
